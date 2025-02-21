@@ -243,11 +243,23 @@
     }
 
     .products-list {
+        display: flex;
+        overflow-x: auto;
+        padding-bottom: 10px;
+        justify-content: space-between;
+        flex-wrap: nowrap;
         gap: 32rem;
-        grid-template-columns: repeat(3, 1fr);
+
         @include maxWidth($sm) {
             gap: 24rem;
-            grid-template-columns: repeat(1, 1fr);
+            flex-direction: column;
+            overflow-x: unset;
+        }
+        .products-item {
+            flex: 0 0 calc((100% - 64rem) / 3);
+            @include maxWidth($sm) {
+                flex: 0 0 100%;
+            }
         }
     }
 }

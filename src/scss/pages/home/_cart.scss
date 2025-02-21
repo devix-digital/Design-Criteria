@@ -26,10 +26,6 @@
 
     .purchase-list {
         .purchase {
-            &-cards {
-                display: none;
-            }
-
             &-table {
                 width: 100%;
                 border-collapse: separate;
@@ -54,8 +50,12 @@
                     height: 40rem;
                 }
 
-                & td {
-                    height: 80rem;
+                & th:nth-child(4) {
+                    padding-left: 64rem;
+                }
+
+                .subtotal {
+                    color: var(--color-gray-800);
                 }
             }
 
@@ -63,17 +63,23 @@
                 display: flex;
                 flex-direction: row;
                 align-items: center;
+                height: 80rem;
             }
 
-            &-icon {
+            &-icon-decs {
                 width: 24rem;
                 height: 24rem;
                 cursor: pointer;
+                display: block;
+                @include maxWidth($sm) {
+                    display: none;
+                }
+            }
+            &-icon-mob {
+                display: none;
             }
 
             &-image {
-                width: 128rem;
-                height: 80rem;
                 display: block;
                 padding: 8rem;
             }
@@ -83,15 +89,23 @@
                 color: #5981f0;
             }
 
-            &-price span {
-                font-size: 12rem;
-                text-decoration: line-through;
+            &-price {
+                p {
+                    color: var(--color-gray-800);
+                }
+                span {
+                    margin-left: 4rem;
+                    font-size: 12rem;
+                    text-decoration: line-through;
+                }
             }
 
             &-quantity {
-                display: flex;
-                align-items: center;
-                gap: 16rem;
+                &-wrapper {
+                    display: flex;
+                    align-items: center;
+                    gap: 16rem;
+                }
 
                 img {
                     width: 24rem;
@@ -174,102 +188,67 @@
         .purchase-list {
             .purchase {
                 &-table {
-                    display: none;
-                }
-
-                &-cards {
                     width: 100%;
-                    margin-bottom: 40rem;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 32rem;
-                }
+                    border-collapse: collapse;
+                    display: block;
+                    color: var(--color-secondary-1);
 
-                &-image-wrapper {
-                    position: relative;
-                }
-
-                &-card {
-                    border-radius: 8px;
-                    padding: 8rem 8rem 16rem;
-                    background: #fff;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 16rem;
-                    &-icon {
-                        position: absolute;
-                        content: url("../../img/cart/close.svg");
-                        width: 32rem;
-                        height: 32rem;
-                        top: -16rem;
-                        right: -16rem;
-                        cursor: pointer;
+                    thead {
+                        display: none;
                     }
-
-                    &-image {
+                    tbody {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 32rem;
                         width: 100%;
-                        height: 124rem;
-                        padding: 0;
                     }
-
-                    &-details {
+                    tr {
                         display: flex;
                         flex-direction: column;
                         gap: 16rem;
-
-                        h6 {
-                            font-size: 16rem;
-                            font-weight: 700;
-                            color: var(--color-secondary-1);
-                        }
-                        a {
-                            text-decoration: underline;
-                            color: #5981f0;
-                        }
                     }
-
-                    &-row {
+                    td {
                         display: flex;
                         justify-content: space-between;
+                        font-size: 14rem;
                         align-items: center;
-
-                        .current-price {
-                            line-height: 22rem;
-                        }
-                        .original-price {
-                            font-size: 12rem;
-                            text-decoration: line-through;
-                            line-height: 15rem;
-                        }
+                        padding: 0 8rem;
                     }
-
-                    &-price {
-                        display: flex;
-                        align-items: flex-end;
-                        gap: 4rem;
+                    td:last-child {
+                        border-bottom: none;
                     }
+                    td::before {
+                        content: attr(data-label);
+                        font-weight: bold;
+                    }
+                    td.purchase-image-wrapper {
+                        position: relative;
+                        justify-content: center;
+                        margin-bottom: 8rem;
+                        height: 160rem;
+                    }
+                }
 
-                    &-quantity {
-                        display: flex;
-                        align-items: center;
-                        gap: 16rem;
+                &-icon-mob {
+                    display: block;
+                    position: absolute;
+                    top: -8rem;
+                    right: 0;
+                    cursor: pointer;
+                }
+                &-image {
+                    width: 100%;
+                }
+                &-price span {
+                    font-size: 10rem;
+                }
+                &-quantity {
+                    display: flex;
+                    align-items: center;
+                    gap: 8rem;
 
-                        img {
-                            width: 24rem;
-                            height: 24rem;
-                            cursor: pointer;
-                        }
-
-                        input {
-                            width: 48rem;
-                            height: 38rem;
-                            font-family: var(--font-family-secondary);
-                            font-size: var(--font-body-s);
-                            text-align: center;
-                            border: 1px solid #c1c4cd;
-                            border-radius: 4px;
-                            padding-left: 12rem;
-                        }
+                    input {
+                        width: 48rem;
                     }
                 }
                 &-bottom {
@@ -283,7 +262,7 @@
                 }
                 &-coupone,
                 &-coupone input,
-                &-coupone button,
+                &-coupone .btn,
                 &-total {
                     width: 100%;
                 }
