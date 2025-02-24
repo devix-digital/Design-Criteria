@@ -5204,6 +5204,10 @@ svg {
   height: 80rem;
 }
 
+.cart .purchase-list .purchase-image {
+  height: 100%;
+}
+
 .cart .purchase-list .purchase-icon-decs {
   width: 24rem;
   height: 24rem;
